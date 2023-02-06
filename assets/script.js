@@ -37,9 +37,9 @@ $.ajax({
         console.log(result)
 
         var todaycityname = $("<h1>").text(result.city.name);
-        var temp = $("<p>").text(result.list[0].main.temp)
-        var wind = $("<p>").text(result.list[0].wind.speed)
-        var humidity = $("<p>").text(result.list[0].main.humidity)
+        var temp = $("<p>").text("Temp: " + result.list[0].main.temp)
+        var wind = $("<p>").text("Wind speed: " + result.list[0].wind.speed)
+        var humidity = $("<p>").text("Humidity: " + result.list[0].main.humidity)
 
         $("#today").append(todaycityname, temp, wind, humidity);
 
