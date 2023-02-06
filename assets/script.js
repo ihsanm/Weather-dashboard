@@ -1,5 +1,6 @@
 
-
+var todaydate = moment().format("MMMM Do YYYY");
+console.log(todaydate);
 // Click event when search button is clicked to trigger ajax response
 
 $("#search-button").on("click", function(event){
@@ -36,7 +37,7 @@ $.ajax({
     }).then(function(result){
         console.log(result)
 
-        var todaycityname = $("<h1>").text(result.city.name);
+        var todaycityname = $("<h1>").text(result.city.name + " " + todaydate);
         var temp = $("<p>").text("Temp: " + result.list[0].main.temp)
         var wind = $("<p>").text("Wind speed: " + result.list[0].wind.speed)
         var humidity = $("<p>").text("Humidity: " + result.list[0].main.humidity)
