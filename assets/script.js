@@ -77,9 +77,13 @@ $.ajax({
 });
  
 
-    var history = $("<button>").text(cityname);
-    history.attr("id", "historybutton")
+    var history = $("<li>").text(cityname);
+    history.addClass("btn btn-primary")
+
     $("#history").append(history);
+
+    
+    
 
     $("#search-input").val("");
     $("#today").empty();
