@@ -37,10 +37,12 @@ $.ajax({
     }).then(function(result){
         console.log(result)
 
+        var tempCelsius = (result.list[0].main.temp -273.15).toFixed(2)
+        
         var todaycityname = $("<h1>").text(result.city.name + " " + todaydate);
-        var temp = $("<p>").text("Temp: " + result.list[0].main.temp)
-        var wind = $("<p>").text("Wind speed: " + result.list[0].wind.speed)
-        var humidity = $("<p>").text("Humidity: " + result.list[0].main.humidity)
+        var temp = $("<p>").text("Temp: " + tempCelsius +"°C")
+        var wind = $("<p>").text("Wind speed: " + result.list[0].wind.speed + "MPH")
+        var humidity = $("<p>").text("Humidity: " + result.list[0].main.humidity + "%")
 
         $("#today").append(todaycityname, temp, wind, humidity);
 
@@ -48,17 +50,17 @@ $.ajax({
 
         for (i=6 ; i< 39 ; i=i+8){
 
-            var tempcardUnfixed = result.list[i].main.temp - 273.15;
-            var tempcardC = tempcardUnfixed.toFixed(2);
+            var tempcardC = (result.list[i].main.temp - 273.15).toFixed(2);
+            
 
             var iconcode = result.list[i].weather[0].icon; 
             var iconurl = "http://openweathermap.org/img/wn/" + iconcode +"@2x.png"
 
             var datecard = $("<b>").text(result.list[i].dt_txt);
             var icon = $("<img>").attr("src", iconurl);
-            var tempcard = $("<p>").text("Temp: " + tempcardC);
-            var windcard = $("<p>").text("Wind speed: " + result.list[i].wind.speed);
-            var humiditycard = $("<p>").text("Humidity: " + result.list[i].main.humidity);
+            var tempcard = $("<p>").text("Temp: " + tempcardC + "°C");
+            var windcard = $("<p>").text("Wind speed: " + result.list[i].wind.speed + "MPH");
+            var humiditycard = $("<p>").text("Humidity: " + result.list[i].main.humidity + "%");
             
 
 
