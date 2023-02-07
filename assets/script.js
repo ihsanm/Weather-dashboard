@@ -1,6 +1,8 @@
+// Getting current date using moment js
 
 var todaydate = moment().format("MMMM Do YYYY");
 console.log(todaydate);
+
 // Click event when search button is clicked to trigger ajax response
 
 $("#search-button").on("click", function(event){
@@ -44,7 +46,31 @@ $.ajax({
 
         $("#today").append(todaycityname, temp, wind, humidity);
 
-        $("#today").addClass("borderstyling")
+        $("#today").addClass("borderstyling");
+
+        for (i=8 ; i< 41 ; i=i+8){
+
+            var tempcardUnfixed = result.list[i].main.temp - 273.15;
+            var tempcardC = tempcardUnfixed.toFixed(2);
+
+            var tempcard = $("<p>").text("Temp: " + tempcardC);
+            var windcard = $("<p>").text("Wind speed: " + result.list[i].wind.speed);
+            var humiditycard = $("<p>").text("Humidity: " + result.list[i].main.humidity);
+            var date = $("<p>").text(result.list[i].dt_txt);
+
+
+            var card = $("<div>");
+            var cardbody = $("<div>");
+
+            
+            card.addClass("card");
+            cardbody.addClass("card-body");
+
+            cardbody.append(date, tempcard, windcard, humiditycard);
+            card.append(cardbody);
+
+            $("#forecast").append(card);
+        };  
     });
 });
  
