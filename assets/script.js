@@ -48,29 +48,33 @@ $.ajax({
 
         $("#today").addClass("borderstyling");
 
-        for (i=8 ; i< 41 ; i=i+8){
+        for (i=6 ; i< 39 ; i=i+8){
 
             var tempcardUnfixed = result.list[i].main.temp - 273.15;
             var tempcardC = tempcardUnfixed.toFixed(2);
 
+            var iconcode = result.list[i].weather[0].icon; 
+            var iconurl = "http://openweathermap.org/img/wn/" + iconcode +"@2x.png"
+
+            var datecard = $("<b>").text(result.list[i].dt_txt);
+            var icon = $("<img>").attr("src", iconurl);
             var tempcard = $("<p>").text("Temp: " + tempcardC);
             var windcard = $("<p>").text("Wind speed: " + result.list[i].wind.speed);
             var humiditycard = $("<p>").text("Humidity: " + result.list[i].main.humidity);
-            var date = $("<p>").text(result.list[i].dt_txt);
+            
 
 
             var card = $("<div>");
             var cardbody = $("<div>");
 
-            
             card.addClass("card");
             cardbody.addClass("card-body");
 
-            cardbody.append(date, tempcard, windcard, humiditycard);
+            cardbody.append(datecard, icon, tempcard, windcard, humiditycard);
             card.append(cardbody);
 
             $("#forecast").append(card);
-        };  
+        }
     });
 });
  
