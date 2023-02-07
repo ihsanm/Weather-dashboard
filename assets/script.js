@@ -37,6 +37,7 @@ $.ajax({
     }).then(function(result){
         console.log(result)
 
+        // variables to hold city name, temp, wind, humidity
         var tempCelsius = (result.list[0].main.temp -273.15).toFixed(2)
         
         var todaycityname = $("<h1>").text(result.city.name + " " + todaydate);
@@ -44,10 +45,12 @@ $.ajax({
         var wind = $("<p>").text("Wind speed: " + result.list[0].wind.speed + "MPH")
         var humidity = $("<p>").text("Humidity: " + result.list[0].main.humidity + "%")
 
+        // appends items to page
         $("#today").append(todaycityname, temp, wind, humidity);
 
         $("#today").addClass("borderstyling");
 
+        // for loop to create 5 cards
         for (i=6 ; i< 39 ; i=i+8){
 
             var tempcardC = (result.list[i].main.temp - 273.15).toFixed(2);
@@ -78,6 +81,7 @@ $.ajax({
     });
 });
  
+//  creates button and adds it to page
 
     var history = $("<li>").text(cityname);
     history.addClass("btn btn-primary")
@@ -91,7 +95,7 @@ $.ajax({
     $("#today").empty();
     $("#forecast").empty();
 
-
+//  ajax response to trigger once history button is clicked
 
     $(history).on("click", function(event){
 
